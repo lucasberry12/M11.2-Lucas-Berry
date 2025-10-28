@@ -1,5 +1,7 @@
 .title {
   display: flex;
+  align-items: center;
+  justify-content: center;
 
   h1 {
     margin: 0px;
@@ -8,5 +10,64 @@
   button {
     padding: 5px 70px;
     margin-left: 40px;
+  }
+}
+
+#lambda-info {
+  margin: 50px auto;
+  width: 70%;
+  border-collapse: collapse;
+  border: 1px solid black;
+
+  tr {
+    border-bottom: 1px solid black;
+    text-align: center;
+  }
+
+  thead {
+    background-color: lightgrey;
+  }
+
+  th,
+  td {
+    padding: 10px;
+    border: 1px solid grey;
+  }
+}
+
+.add-item-form {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 50%;
+  margin: 30px auto;
+
+  h2 {
+    text-align: center;
+  }
+
+  div {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-right: 10px;
+
+    label {
+      margin-left: 40px;
+      flex: 1;
+    }
+
+    input {
+      flex: 1;
+      padding: 10px;
+    }
+  }
+
+  button {
+    width: 30%;
+    margin: 20px 20px;
+    padding: 10px;
+    align-self: flex-end;
   }
 }
