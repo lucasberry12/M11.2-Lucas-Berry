@@ -24,3 +24,4 @@ on AWS to verify the items are being added/removed correctly.
 - https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data
 - https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Third_party_APIs
 - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/table
+- https://fonts.google.com/selection/embed
