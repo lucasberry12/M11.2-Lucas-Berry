@@ -1,5 +1,10 @@
 body {
-  background-color: linen;
+  background-color: rgb(238, 182, 126);
+}
+
+h1 {
+  font-family: "Creepster";
+  font-size: 45px;
 }
 
 .title {
@@ -22,20 +27,25 @@ body {
   width: 70%;
   border-collapse: collapse;
   border: 1px solid black;
+  background-color: rgb(255, 174, 0);
 
   tr {
     border-bottom: 1px solid black;
     text-align: center;
   }
 
+  tr:nth-child(even) {
+    background-color: rgb(231, 188, 70);
+  }
+
   thead {
-    background-color: lightgrey;
+    background-color: rgb(255, 115, 0);
   }
 
   th,
   td {
     padding: 10px;
-    border: 1px solid grey;
+    border: 1px solid rgb(0, 0, 0);
   }
 }
 
@@ -45,9 +55,12 @@ body {
   border: 1px solid black;
   width: 50%;
   margin: 30px auto;
+  background-color: rgb(255, 174, 0);
 
   h2 {
     text-align: center;
+    font-family: "Creepster";
+    font-size: 35px;
   }
 
   div {
@@ -60,6 +73,8 @@ body {
     label {
       margin-left: 40px;
       flex: 1;
+      font-weight: bold;
+      font-size: 20px;
     }
 
     input {
