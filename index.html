@@ -16,7 +16,6 @@
   <body>
     <div class="title">
       <h1>My Simple Inventory App</h1>
-      <button id="load-data">Load All Items</button>
     </div>
     <table id="lambda-info">
       <thead>
@@ -29,10 +28,10 @@
       </thead>
       <tbody>
         <tr>
-          <td>...</td>
-          <td>...</td>
-          <td>...</td>
-          <td>...</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
         </tr>
         <!-- loaded with AJAX -->
       </tbody>
@@ -89,6 +88,9 @@
           "https://plx7aejwka.execute-api.us-east-2.amazonaws.com/items"
         );
         xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onload = function () {
+          loadTable();
+        };
         xhr.send(
           JSON.stringify({
             id: `${id}`,
@@ -100,48 +102,46 @@
     </script>
 
     <script>
-      document.getElementById("load-data").onclick = function () {
-        let lambda = document.getElementById("lambda-info");
+      function loadTable() {
         let xhr = new XMLHttpRequest();
         xhr.addEventListener("load", function () {
           const data = JSON.parse(xhr.response);
           const tbody = document.querySelector("tbody");
-          if (data.length == 0) {
-            tbody.innerHTML = "";
-          }
-          if (data.length > 0) {
-            tbody.innerHTML = "";
-            data.sort((a, b) => Number(a.id) - Number(b.id));
-            data.forEach((item) => {
-              const tr = document.createElement("tr");
-              tr.innerHTML = `
+          tbody.innerHTML = "";
+          data.sort((a, b) => Number(a.id) - Number(b.id));
+          data.forEach((item) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
                 <th scope="row">${item.id}</th>
                 <td>${item.name}</td>
                 <td>${item.price}</td>
                 <td><button class="delete-data" data-id="${item.id}">Delete</button></td>
               `;
-              tbody.appendChild(tr);
+            tbody.appendChild(tr);
 
-              const deleteButton = tr.querySelector(".delete-data");
-              deleteButton.onclick = function () {
-                let id = this.getAttribute("data-id");
-                let xhr = new XMLHttpRequest();
-                xhr.open(
-                  "DELETE",
-                  `https://plx7aejwka.execute-api.us-east-2.amazonaws.com/items/${id}`
-                );
-                xhr.setRequestHeader("Content-Type", "application/json");
-                xhr.send();
+            const deleteButton = tr.querySelector(".delete-data");
+            deleteButton.onclick = function () {
+              const id = this.getAttribute("data-id");
+              let dxhr = new XMLHttpRequest();
+              dxhr.open(
+                "DELETE",
+                `https://plx7aejwka.execute-api.us-east-2.amazonaws.com/items/${id}`
+              );
+              dxhr.setRequestHeader("Content-Type", "application/json");
+              dxhr.onload = function () {
+                loadTable();
               };
-            });
-          }
+              dxhr.send();
+            };
+          });
         });
         xhr.open(
           "GET",
           "https://plx7aejwka.execute-api.us-east-2.amazonaws.com/items"
         );
         xhr.send();
-      };
+      }
+      window.onload = loadTable;
     </script>
   </body>
 </html>
